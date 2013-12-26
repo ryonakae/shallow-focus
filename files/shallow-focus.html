@@ -61,8 +61,12 @@
     <meta name="twitter:url" value="http://{text:Site Domain}">
   {/block:IndexPage}
   {block:PermalinkPage}
-    <meta name="twitter:image" value="{PhotoURL-500}">
-    <meta name="twitter:url" value="{Permalink}">
+    {block:Posts}
+      <meta name="twitter:url" value="{Permalink}">
+      {block:Photo}
+        <meta name="twitter:image" value="{PhotoURL-500}">
+      {/block:Photo}
+    {/block:Posts}
   {/block:PermalinkPage}
   
   <link rel="stylesheet" href="//rawgithub.com/ryonakae/shallow-focus/master/files/style.css">
