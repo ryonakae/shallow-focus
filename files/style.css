@@ -2743,4 +2743,8 @@ body.single #main #entry-wrapper {
   .entry-single .btnArea #toggle {
     left: 5%;
   }
+
+  #tumblr_controls {
+    display: none;
+  }
 }
