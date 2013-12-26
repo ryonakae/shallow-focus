@@ -26,6 +26,20 @@ jQuery(function(){
     });
   });
   
+  // auto pager
+  jQuery.autopager({
+    // 読み込むコンテンツの枠
+    content: ".autopagerize_page_element",
+    // 次ページへのリンク
+    link: "#next a",
+    // スクロールで自動読込を停止
+    autoLoad: true,
+    // 読み込み完了後に発生するイベント
+    load: function(current, next){
+      entryWrapper_index.removeWhitespace().collagePlus();
+    }
+  });
+  
   // --------
   // single  
   // --------
