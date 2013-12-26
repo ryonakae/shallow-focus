@@ -8,11 +8,7 @@ jQuery(function(){
   // entryWrapper_index.css({ "opacity": 0 });
   
   jQuery(window).on("load", function(){
-    entryWrapper_index
-      .removeWhitespace()
-      .collagePlus()
-      .transit({ "opacity": 1 }, 800)
-    ;
+    entryWrapper_index.removeWhitespace().collagePlus().transit({ "opacity": 1 }, 800);
   });
   jQuery(window).on("resize", function(){
     entryWrapper_index.removeWhitespace().collagePlus();
@@ -20,7 +16,7 @@ jQuery(function(){
   
   // entry hover
   function index_hoverAction() {
-    entryWrapper_index.find(".entry-index").each(function(){
+    jQuery("body.index #entry-wrapper").find(".entry-index").each(function(){
       jQuery(this).on("mouseenter mouseleave", function(){
         jQuery(this).find(".info_wrapper").toggleClass("hover");
         jQuery(this).find("img").toggleClass("hover");
@@ -40,15 +36,11 @@ jQuery(function(){
     // スクロールで自動読込を停止
     autoLoad: true,
     // 読み込み完了後に発生するイベント
-    load: function(current, next){
-      setTimeout(function(){
-        entryWrapper_index
-          .removeWhitespace()
-          .collagePlus()
-          .transit({ "opacity": 1 }, 800)
-        ;
+    load: function(){
+      jQuery("body.index #entry-wrapper").imagesLoaded(function(){
+        jQuery("body.index #entry-wrapper").removeWhitespace().collagePlus().transit({ "opacity": 1 }, 800);
         index_hoverAction();
-      }, 1000);
+      });
     }
   });
   

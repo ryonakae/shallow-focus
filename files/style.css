@@ -2176,6 +2176,9 @@ a {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
+#main #entry-wrapper:nth-child(n+2) {
+  margin-top: -30px;
+}
 
 body.single #main #entry-wrapper {
   margin: 0;
@@ -2716,6 +2719,9 @@ body.single #main #entry-wrapper {
   #main #entry-wrapper {
     padding: 10px;
     margin: -10px 0;
+  }
+  #main #entry-wrapper:nth-child(n+2) {
+    margin-top: -20px;
   }
 
   .entry-single #info_wrapper .info {

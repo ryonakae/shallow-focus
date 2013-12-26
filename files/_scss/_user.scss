@@ -128,6 +128,11 @@ a {
     // @include scale(1.005);
     
     @include opacity(0);
+    
+    // for auto pager
+    &:nth-child(n+2) {
+      margin-top: -30px;
+    }
   }
 }
 body.single #main {

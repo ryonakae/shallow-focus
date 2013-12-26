@@ -46,6 +46,11 @@
     #entry-wrapper {
       padding: 10px;
       margin: -10px 0;
+      
+      // for auto pager
+      &:nth-child(n+2) {
+        margin-top: -20px;
+      }
     }
   }
 
