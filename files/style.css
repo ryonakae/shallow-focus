@@ -2749,4 +2749,7 @@ body.single #main #entry-wrapper {
   .entry-single .btnArea #toggle {
     left: 5%;
   }
+  .entry-single .btnArea .picture {
+    right: 5%;
+  }
 }
