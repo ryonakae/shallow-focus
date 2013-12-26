@@ -29,8 +29,15 @@ a {
   z-index: 10;
 }
 .entry-single {
+  #img {
+    z-index: 3;
+  }
   #info_wrapper {
-    z-index: 5;
+    z-index: 1;
+    
+    &.zIndex {
+      z-index: 5;
+    }
   }
   .btnArea {
     z-index: 10;
@@ -136,6 +143,8 @@ body.single #main {
   position: relative;
 
   img {
+    position: relative;
+    // z-index: 1;
     vertical-align:bottom;
     width: 100%;
     height: auto;
@@ -238,6 +247,7 @@ body.single #main {
     display: block;
     line-height: 0;
     overflow: hidden;
+    position: relative;
     
     img {
       width: 100%;
@@ -272,15 +282,38 @@ body.single #main {
   }
   
   #info_wrapper {
-    position: relative;
+    // position: relative;
+    // position: absolute; // 非表示時なぜか高さが計上されるので対策
+    // height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.6);
-    position: absolute; // 非表示時なぜか高さが計上されるので対策
-    height: 0;
+    // z-index: 1;
     
     // animation
     @extend .animation;
     @include transition-property(opacity, height);
     @include opacity(0);
+    
+    &.open {
+      position: relative;
+      height: auto;
+      @include opacity(1);
+    }
+    
+    &.zIndex {
+      // z-index: 5;
+    }
+    
+    // top wrapper (whitesmoke)
+    .top_wrapper {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: rgba(255,255,255,0.2);
+    }
     
     .info {
       padding-top: 40px;
@@ -547,20 +580,6 @@ body.single #main {
 
       } // side
     } // info
-    
-    &.open {
-      position: relative;
-      height: auto;
-      @include opacity(1);
-    }
-    
-    // top wrapper (whitesmoke)
-    .top_wrapper {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: rgba(255,255,255,0.2);
-    }
   } // info_wrapper
   
   .btnArea {
@@ -596,10 +615,18 @@ body.single #main {
       }
     }
     
-    #toggle {
+    #toggle,
+    .picture {
       margin: 0;
       position: absolute;
+    }
+    
+    #toggle {
       left: 20px;
+    }
+    
+    .picture {
+      right: 20px;
     }
   }
 }

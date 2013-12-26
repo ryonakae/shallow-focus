@@ -65,6 +65,11 @@
     <meta name="twitter:url" value="{Permalink}">
   {/block:PermalinkPage}
   
+  <link rel="stylesheet" href="//rawgithub.com/ryonakae/shallow-focus/master/files/style.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700">
+  <link rel="icon" href="{Favicon}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  
   <!-- Custom CSS -->
   <style>
     {CustomCSS}
@@ -187,9 +192,7 @@
             <div class="entry-single">
               <article>
                 <div id="img">
-                  {LinkOpenTag}
-                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
-                  {LinkCloseTag}
+                  <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
                 </div>
                 
                 <div id="info_wrapper">
@@ -320,11 +323,10 @@
                   </section>
                 </div>
                 
-                <div class="btnArea">
-                  <div class="btn" id="toggle"><i class="icon icon-info"></i></div>
-                  
-                  {block:PermalinkPagination}
-                    <!-- pagination -->
+                {block:PermalinkPagination}
+                  <!-- btn, pagination -->
+                  <div class="btnArea">
+                    <div class="btn" id="toggle"><i class="icon icon-info"></i></div>
                     {block:PreviousPost}
                       <div class="btn"><a href="{PreviousPost}"><i class="icon icon-left-open-big"></i></a></div>
                     {/block:PreviousPost}
@@ -332,8 +334,9 @@
                     {block:NextPost}
                       <div class="btn"><a href="{NextPost}"><i class="icon icon-right-open-big"></i></a></div>
                     {/block:NextPost}
-                  {/block:PermalinkPagination}
-                </div>
+                    <div class="btn picture"><a href="{LinkURL}"><i class="icon icon-picture"></i></a></div>
+                  </div>
+                {/block:PermalinkPagination}
               </article>
             </div>
           {/block:Photo}
@@ -365,6 +368,33 @@
       <p>&copy; {CopyrightYears} {Title} / Theme Designed by <a href="http://brdr.jp" target="_blank">RYO NAKAE</a></p>
     </small>
   </footer>
+  
+  {block:PermalinkPage}
+    <!-- script -->
+    <div id="fb-root"></div>
+    <script>
+      // Facebook Like Button
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      
+      !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+        if(!d.getElementById(id)){
+          js=d.createElement(s);
+          js.id=id;
+          js.src=p+'://platform.twitter.com/widgets.js';
+          fjs.parentNode.insertBefore(js,fjs);
+        }
+      }
+      (document, 'script', 'twitter-wjs');
+    </script>
+  {/block:PermalinkPage}
 
 </body>
 </html>

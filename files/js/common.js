@@ -121,7 +121,7 @@ jQuery(function(){
       setTimeout(function(){
         imageWrapper.addClass("fixed");
       }, 800);
-      infoWrapper.addClass("open");
+      infoWrapper.addClass("zIndex").addClass("open");
       
       infoWrapper.css({ "min-height": windowHeight - footerHeight });
       
@@ -133,6 +133,9 @@ jQuery(function(){
       header.removeClass("hidden");
       imageWrapper.removeClass("absolute").removeClass("fixed");
       infoWrapper.removeClass("open");
+      setTimeout(function(){
+        infoWrapper.removeClass("zIndex");
+      }, 800);
       
       resizeImage("scaleDown");
       

@@ -2104,7 +2104,13 @@ a {
   z-index: 10;
 }
 
+.entry-single #img {
+  z-index: 3;
+}
 .entry-single #info_wrapper {
+  z-index: 1;
+}
+.entry-single #info_wrapper.zIndex {
   z-index: 5;
 }
 .entry-single .btnArea {
@@ -2194,6 +2200,7 @@ body.single #main #entry-wrapper {
   */
 }
 .entry-index img {
+  position: relative;
   vertical-align: bottom;
   width: 100%;
   height: auto;
@@ -2287,6 +2294,7 @@ body.single #main #entry-wrapper {
   display: block;
   line-height: 0;
   overflow: hidden;
+  position: relative;
 }
 .entry-single #img img {
   width: 100%;
@@ -2325,16 +2333,29 @@ body.single #main #entry-wrapper {
   transition-property: transform, filter, height, width, margin-left;
 }
 .entry-single #info_wrapper {
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.6);
   position: absolute;
-  height: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
   -webkit-transition-property: opacity, height;
   -moz-transition-property: opacity, height;
   -o-transition-property: opacity, height;
   transition-property: opacity, height;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
+}
+.entry-single #info_wrapper.open {
+  position: relative;
+  height: auto;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+.entry-single #info_wrapper .top_wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .entry-single #info_wrapper .info {
   padding-top: 40px;
@@ -2584,18 +2605,6 @@ body.single #main #entry-wrapper {
   padding-left: 15px;
   font-weight: bold;
 }
-.entry-single #info_wrapper.open {
-  position: relative;
-  height: auto;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-.entry-single #info_wrapper .top_wrapper {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-}
 .entry-single .btnArea {
   position: fixed;
   width: 100%;
@@ -2635,10 +2644,16 @@ body.single #main #entry-wrapper {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
-.entry-single .btnArea #toggle {
+.entry-single .btnArea #toggle,
+.entry-single .btnArea .picture {
   margin: 0;
   position: absolute;
+}
+.entry-single .btnArea #toggle {
   left: 20px;
+}
+.entry-single .btnArea .picture {
+  right: 20px;
 }
 
 #footer {
