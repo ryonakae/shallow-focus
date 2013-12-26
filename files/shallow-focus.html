@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>{block:PostTitle}{PostTitle} | {block:PostTitle}{Title}</title>
+  
+	{block:Description}
+		<meta name="description" content="{MetaDescription}">
+	{/block:Description}
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+  
+	<!-- Tumble Variables -->
+	<meta name="text:Tumblr API Key" content="">
+  <meta name="text:Site Domain" content="">
+  <meta name="text:FBOGP User ID" content="">
+  <meta name="text:FBOGP Facebook Page URL" content="">
+  <meta name="text:TwMeta Creator ID" content="">
+  <meta name="text:Google Analytics ID" content="">
+
+  <!-- OGP -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{block:PostSummary}{PostSummary} | {/block:PostSummary}{Title}">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:description" content="{MetaDescription}">
+  <meta property="og:site_name" content="{Title}">
+  {block:FBOGPUserID}
+    <meta property="fb:admins" content="{text:FBOGP User ID}">
+  {/block:FBOGPUserID}
+  {block:IndexPage}
+    <meta property="og:url" content="http://{text:Site Domain}">
+    <meta property="og:image" content="{PortraitURL-128}">
+  {/block:IndexPage}
+  {block:PermalinkPage}
+    {block:Posts}
+      <meta property="og:url" content="{Permalink}">
+      {block:Photo}
+        <meta property="og:image" content="{PhotoURL-500}">
+      {/block:Photo}
+      {block:Photoset}
+        {block:Photos}
+          <meta property="og:image" content="{PhotoURL-500}">
+        {/block:Photos} 
+      {/block:Photoset}
+    {/block:Posts}
+  {/block:PermalinkPage}
+  {block:IfFBOGPFacebookPageURL}
+    <meta property="article:publisher" content="{text:FBOGP Facebook Page URL}">
+  {/block:IfFBOGPFacebookPageURL}
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" value="summary_large_image">
+  <meta name="twitter:title" value="{block:PostSummary}{PostSummary} | {/block:PostSummary}{Title}">
+  <meta name="twitter:description" value="{MetaDescription}">
+  {block:IfTwMetaCreatorID}
+    <meta name="twitter:creator" value="@{text:TwMeta Creator ID}">
+  {/block:IfTwMetaCreatorID}
+  {block:IndexPage}
+    <meta name="twitter:image" value="{PortraitURL-128}">
+    <meta name="twitter:url" value="http://{text:Site Domain}">
+  {/block:IndexPage}
+  {block:PermalinkPage}
+    <meta name="twitter:image" value="{PhotoURL-500}">
+    <meta name="twitter:url" value="{Permalink}">
+  {/block:PermalinkPage}
+  
+  <!-- Custom CSS -->
+  <style>
+    {CustomCSS}
+  </style>
+
+  <!--[if IE]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
+  <script src="//rawgithub.com/ryonakae/shallow-focus/master/files/js/jquery.removeWhitespace.min.js"></script>
+  <script src="//rawgithub.com/ryonakae/shallow-focus/master/files/js/jquery.collagePlus.min.js"></script>
+  <script src="//rawgithub.com/ryonakae/shallow-focus/master/files/js/jquery.tumblr_post_list.js"></script>
+  <script src="//rawgithub.com/ryonakae/shallow-focus/master/files/js/common.js"></script>
+  
+	<script>
+		// tumblr_post_list: 最近の記事を取得
+		jQuery(function(){
+			jQuery("body.single #thumbnail_inner").jq_tumblrPostList({
+				api_key: "{text:Tumblr API Key}",
+				domain: "{text:Site Domain}", // 取得先となるTumblrサイトのドメイン
+				width: 150,//画像の横幅
+				limit: 3 // 記事の数
+			});
+		});
+	</script>
+  
+  {block:IfEnableGoogleAnalytics}
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '{text:Google Analytics ID}', 'tumblr.com');
+      ga('send', 'pageview');
+    </script>
+  {/block:IfEnableGoogleAnalytics}
+
+</head>
+{block:IndexPage}<body class="index">{/block:IndexPage}
+{block:PermalinkPage}<body class="single">{/block:PermalinkPage}
+
+  <!-- header -->
+  <div class="border"></div>
+  <header id="header">
+    <h1><a href="/">{Title}</a></h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        {block:HasPages}
+          {block:Pages}
+            <li><a href="{URL}">{Label}</a></li>
+          {/block:Pages}
+        {/block:HasPages}
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="{RSS}">Rss</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- main -->
+  <div id="main">
+    {block:IndexPage}
+      <!-- entry-wrapper index -->
+      <div id="entry-wrapper" class="autopagerize_page_element">
+      
+        {block:Posts}
+          {block:Photo}
+            <!-- entry-index -->
+            <div class="entry-index">
+              <article>
+                <img src="{PhotoURL-500}" alt="{PhotoAlt}">
+                <div class="info_wrapper">
+                  <div class="info_inner">
+                    <div class="info">
+                      {block:Date}
+                        <p class="time">
+                          <a href="{Permalink}">
+                            {block:NewDayDate}
+                              <time pubdate="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">
+                                {Year}.{MonthNumberWithZero}.{DayOfMonthWithZero} / {TimeAgo}
+                              </time>
+                            {/block:NewDayDate}
+                            {block:SameDayDate}
+                              <time pubdate="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">
+                                {Year}.{MonthNumberWithZero}.{DayOfMonthWithZero} / {TimeAgo}
+                              </time>
+                            {/block:SameDayDate}
+                          </a>
+                        </p>
+                      {/block:Date}
+                      {block:NoteCount}
+                        <hr>
+                        <p class="action"><a href="{Permalink}">{NoteCount} Notes</a></p>
+                      {/block:NoteCount}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          {/block:Photo}
+        {block:Posts}
+        
+      </div>
+    {/block:IndexPage}
+    
+    {block:PermalinkPage}
+      <!-- entry-wrapper single -->
+      <div id="entry-wrapper">
+      
+        {block:Posts}
+          {block:Photo}
+            <!-- posttype: photo -->
+            <!-- entry-single -->
+            <div class="entry-single">
+              <article>
+                <div id="img">
+                  {LinkOpenTag}
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">
+                  {LinkCloseTag}
+                </div>
+                
+                <div id="info_wrapper">
+                  <section>
+                    <div class="top_wrapper">
+                      <div class="info container top">
+                        <div class="content grid-8">
+                          {block:Caption}
+                            <!-- text -->
+                            <div class="txt">
+                              {Caption}
+                            </div>
+                          {/block:Caption}
+                          
+                          <!-- like_reblog -->
+                          <ul class="like_reblog">
+                            <li class="reblog">{ReblogButton size="16"}</li>
+                            <li class="like">{LikeButton size="16"}</li>
+                          </ul>
+                          
+                          <!-- share -->
+                          <ul class="share">
+                            <li class="share-fb">
+                              <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+                            </li>
+                            <li class="share-twitter">
+                              <a href="https://twitter.com/share" class="twitter-share-button" data-via="{text:TwMeta Creator ID}" data-lang="ja">ツイート</a>
+                            </li>
+                          </ul>
+                        </div><!-- content -->
+                        
+                        <div class="side grid-4">
+                          <aside>
+                            {block:HasTags}
+                              <!-- tag -->
+                              <div class="tag">
+                                <table>
+                                  <tr>
+                                    <th>Tag</th>
+                                    <td>
+                                      {block:Tags}
+                                        <a href="{TagURL}">{Tag}</a>
+                                      {/block:Tags}
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            {/block:HasTags}
+                            
+                            {block:Exif}
+                              <!-- exif -->
+                              <div class="exif">
+                                <table>
+                                  <tr>
+                                    <th>Uploaded</th>
+                                    <td>
+                                      {block:NewDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:NewDayDate}
+                                      {block:SameDayDate}{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}{/block:SameDayDate}
+                                    </td>
+                                  </tr>
+                                  
+                                  {block:Camera}
+                                    <tr>
+                                      <th>Camera</th>
+                                      <td>{Camera}</td>
+                                    </tr>
+                                  {/block:Camera}
+                                  
+                                  {block:FocalLength}
+                                    <tr>
+                                      <th>Focal Length</th>
+                                      <td>{FocalLength}</td>
+                                    </tr>
+                                  {/block:FocalLength}
+                                  
+                                  {block:Exposure}
+                                    <tr>
+                                      <th>Shutter Speed</th>
+                                      <td>{Exposure}</td>
+                                    </tr>
+                                  {/block:Exposure}
+                                  
+                                  {block:Aperture}
+                                    <tr>
+                                      <th>Aperture</th>
+                                      <td>{Aperture}</td>
+                                    </tr>
+                                  {/block:Aperture}
+                                  
+                                  {block:Iso}
+                                    <tr>
+                                      <th>ISO</th>
+                                      <td>{Iso}</td>
+                                    </tr>
+                                  {/block:Iso}
+                                </table>
+                              </div>
+                            {/block:Exif}
+                          </aside>
+                        </div><!-- side -->
+                      </div><!-- info container top -->
+                    </div>
+                    
+                    <div class="info container bottom">
+                      <div class="content grid-8">
+                        {block:PostNotes}
+                          <!-- notes -->
+                          <div class="notes_wrapper">
+                            <aside>
+                              <h3><span>{NoteCount}</span> Notes</h3>
+                              {PostNotes}
+                            </aside>
+                          </div>
+                        {/block:PostNotes}
+                      </div><!-- content -->
+                      
+                      <div class="side grid-4">
+                        <aside>
+                          <!-- thumbnail -->
+                          <div class="thumbnail">
+                            <h3>Recent Photos</h3>
+                            <div id="thumbnail_inner"></div>
+                          </div>
+                        </aside>
+                      </div><!-- side -->
+                      
+                    </div><!-- info container bottom -->
+                  </section>
+                </div>
+                
+                <div class="btnArea">
+                  <div class="btn" id="toggle"><i class="icon icon-info"></i></div>
+                  
+                  {block:PermalinkPagination}
+                    <!-- pagination -->
+                    {block:PreviousPost}
+                      <div class="btn"><a href="{PreviousPost}"><i class="icon icon-left-open-big"></i></a></div>
+                    {/block:PreviousPost}
+                    <div class="btn"><a href="/"><i class="icon icon-layout"></i></a></div>
+                    {block:NextPost}
+                      <div class="btn"><a href="{NextPost}"><i class="icon icon-right-open-big"></i></a></div>
+                    {/block:NextPost}
+                  {/block:PermalinkPagination}
+                </div>
+              </article>
+            </div>
+          {/block:Photo}
+          
+          {block:Text}
+            <!-- posttype: text -->
+          {/block:Text}
+        {/block:Posts}
+      </div>
+    {/block:PermalinkPage}
+  </div>
+  
+  <!-- footer -->
+  <footer id="footer">
+    {block:IndexPage}
+      {block:Pagination}
+        <!-- pager -->
+        <ul id="pager">
+          {block:PreviousPage}
+            <li id="prev"><a href="{PreviousPage}">Prev</a></li>
+          {/block:PreviousPage}
+          {block:NextPage}
+            <li id="next"><a href="{NextPage}" rel="next">Next</a></li>
+          {block:NextPage}
+        </ul>
+      {/block:Pagination}
+    {/block:IndexPage}
+    <small>
+      <p>&copy; {CopyrightYears} {Title} / Theme Designed by <a href="http://brdr.jp" target="_blank">RYO NAKAE</a></p>
+    </small>
+  </footer>
+
+</body>
+</html>
