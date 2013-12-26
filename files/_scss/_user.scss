@@ -126,6 +126,8 @@ a {
     
     // @include transform-origin(0,0);
     // @include scale(1.005);
+    
+    @include opacity(0);
   }
 }
 body.single #main {

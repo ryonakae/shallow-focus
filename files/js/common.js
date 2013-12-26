@@ -5,7 +5,7 @@ jQuery(function(){
   // collagePlus
   var entryWrapper_index = jQuery("body.index #entry-wrapper");
   
-  entryWrapper_index.css({ "opacity": 0 });
+  // entryWrapper_index.css({ "opacity": 0 });
   
   jQuery(window).on("load", function(){
     entryWrapper_index
@@ -58,7 +58,7 @@ jQuery(function(){
   
   // fadeIn
   var entryWrapper_single = jQuery("body.single #entry-wrapper");
-  entryWrapper_single.css({ "opacity": 0 });
+  // entryWrapper_single.css({ "opacity": 0 });
   jQuery(window).on("load", function(){
     entryWrapper_single.transit({ "opacity": 1 }, 800);
     setTimeout(function(){
