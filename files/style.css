@@ -2745,6 +2745,6 @@ body.single #main #entry-wrapper {
   }
 
   #tumblr_controls {
-    display: none;
+    display: none !important;
   }
 }
