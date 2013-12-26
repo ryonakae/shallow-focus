@@ -19,11 +19,16 @@ jQuery(function(){
   });
   
   // entry hover
-  entryWrapper_index.find(".entry-index").each(function(){
-    jQuery(this).on("mouseenter mouseleave", function(){
-      jQuery(this).find(".info_wrapper").toggleClass("hover");
-      jQuery(this).find("img").toggleClass("hover");
+  function index_hoverAction() {
+    entryWrapper_index.find(".entry-index").each(function(){
+      jQuery(this).on("mouseenter mouseleave", function(){
+        jQuery(this).find(".info_wrapper").toggleClass("hover");
+        jQuery(this).find("img").toggleClass("hover");
+      });
     });
+  }
+  jQuery(window).on("load", function(){
+    index_hoverAction();
   });
   
   // auto pager
@@ -36,7 +41,14 @@ jQuery(function(){
     autoLoad: true,
     // 読み込み完了後に発生するイベント
     load: function(current, next){
-      entryWrapper_index.removeWhitespace().collagePlus();
+      setTimeout(function(){
+        entryWrapper_index
+          .removeWhitespace()
+          .collagePlus()
+          .transit({ "opacity": 1 }, 800)
+        ;
+      }, 1000);
+      index_hoverAction();
     }
   });
   
