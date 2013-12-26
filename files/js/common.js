@@ -17,9 +17,15 @@ jQuery(function(){
   // entry hover
   function index_hoverAction() {
     jQuery("body.index #entry-wrapper").find(".entry-index").each(function(){
-      jQuery(this).on("mouseenter mouseleave", function(){
-        jQuery(this).find(".info_wrapper").toggleClass("hover");
-        jQuery(this).find("img").toggleClass("hover");
+      jQuery(this).on({
+        mouseenter:function(){
+          jQuery(this).find(".info_wrapper").addClass("hover");
+          jQuery(this).find("img").addClass("hover");
+        },
+        mouseleave:function(){
+          jQuery(this).find(".info_wrapper").removeClass("hover");
+          jQuery(this).find("img").removeClass("hover");
+        }
       });
     });
   }
@@ -124,7 +130,7 @@ jQuery(function(){
       "width": setW,
       "margin-left": marginLeft
     });
-  };
+  }
   
   jQuery(window).on("load resize", function(){
     resizeImage("resize");
