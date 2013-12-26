@@ -47,8 +47,8 @@ jQuery(function(){
           .collagePlus()
           .transit({ "opacity": 1 }, 800)
         ;
+        index_hoverAction();
       }, 1000);
-      index_hoverAction();
     }
   });
   
