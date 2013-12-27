@@ -1,5 +1,23 @@
 jQuery(function(){
   // --------
+  // common
+  // --------
+  // スクロール時のhoverイベントを無効化
+  var body = document.body;
+  var timer;
+
+  window.addEventListener('scroll', function() {
+    clearTimeout(timer);
+    if(!body.classList.contains('hover-disable')) {
+      body.classList.add('hover-disable')
+    }
+
+    timer = setTimeout(function(){
+      body.classList.remove('hover-disable')
+    },500);
+  }, false);
+
+  // --------
   // index
   // --------
   // collagePlus

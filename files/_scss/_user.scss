@@ -18,6 +18,12 @@ a {
 }
 
 
+// スクロール時のホバーイベントを無効にする
+.hover-disable {
+  pointer-events: none;
+}
+
+
 // z-index
 .border {
   z-index: 15;

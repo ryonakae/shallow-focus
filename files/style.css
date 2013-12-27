@@ -2092,6 +2092,10 @@ a {
   transition-duration: 200ms;
 }
 
+.hover-disable {
+  pointer-events: none;
+}
+
 .border {
   z-index: 15;
 }
